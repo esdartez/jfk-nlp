@@ -1,0 +1,2 @@
+file,length_chars,valid_word_ratio,perplexity_score,word_accuracy_vs_reference
+test_batch1__124-10290-10051.pdf.txt,1775,0.3395,193.8157,
