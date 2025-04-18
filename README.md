@@ -7,14 +7,14 @@ This project was developed as part of a final assignment for an NLP course.
 ## Project Structure
 
 ```
-jfk-nlp/
-├── scripts/        # Python modules (OCR, NLP, status tracking)
-├── data/           # Input ZIP files containing JFK PDFs
-├── output/         # OCR and NLP results (TXT, CSV, JSON)
-├── logs/           # Log files for errors and retries
-├── report/         # Milestone and final project reports
-├── .gitignore      # Git exclusions
-└── README.md       # This file
+jfk-nlp
+├── scripts/        
+├── data/           
+├── output/         
+├── logs/           
+├── report/        
+├── .gitignore
+└── README.md       
 ```
 
 ## Features
