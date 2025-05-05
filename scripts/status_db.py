@@ -13,17 +13,23 @@ class StatusDB:
                 CREATE TABLE IF NOT EXISTS status (
                     doc_id TEXT PRIMARY KEY,
                     status TEXT CHECK(status IN ('pending', 'success', 'failed')),
+                    ocr_engine TEXT,
+                    confidence_score REAL,
                     notes TEXT
                 )
             """)
 
-    def set_status(self, doc_id, status, notes=None):
+    def set_status(self, doc_id, status, ocr_engine=None, confidence_score=None, notes=None):
         with self.conn:
             self.conn.execute("""
-                INSERT INTO status (doc_id, status, notes)
-                VALUES (?, ?, ?)
-                ON CONFLICT(doc_id) DO UPDATE SET status=excluded.status, notes=excluded.notes
-            """, (doc_id, status, notes))
+                INSERT INTO status (doc_id, status, ocr_engine, confidence_score, notes)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(doc_id) DO UPDATE SET
+                    status=excluded.status,
+                    ocr_engine=excluded.ocr_engine,
+                    confidence_score=excluded.confidence_score,
+                    notes=excluded.notes
+            """, (doc_id, status, ocr_engine, confidence_score, notes))
 
     def get_status(self, doc_id):
         cur = self.conn.cursor()
